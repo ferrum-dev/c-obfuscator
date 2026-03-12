@@ -23,7 +23,7 @@
 # Сборка
 ./gradlew build
 
-# Использование
+# Обфускация
 java -jar build/libs/c-obfuscator-1.0.0.jar input.exe output.exe
 ```
 
@@ -31,7 +31,36 @@ java -jar build/libs/c-obfuscator-1.0.0.jar input.exe output.exe
 
 ---
 
-## 🎯 Возможности
+## 📖 Использование
+
+```bash
+java -jar c-obfuscator-1.0.0.jar <input.exe> <output.exe>
+```
+
+**Параметры:**
+- `input.exe` - путь к входному EXE файлу (C# или C++)
+- `output.exe` - путь к выходному EXE файлу
+
+**Примеры:**
+
+```bash
+# Обфускация C# приложения
+java -jar c-obfuscator-1.0.0.jar C:\app\myapp.exe C:\app\myapp_obf.exe
+
+# Обфускация C++ приложения
+java -jar c-obfuscator-1.0.0.jar app.exe app_obf.exe
+
+# Обфускация с относительными путями
+java -jar c-obfuscator-1.0.0.jar ./input/app.exe ./output/app_obf.exe
+```
+
+**Автоматическое определение типа:**
+- Программа анализирует заголовок EXE
+- Определяет C# (.NET) или C++
+- Применяет соответствующую обфускацию
+- Выводит результат в консоль
+
+---
 
 ### 🧠 Умная автоматика
 - **Без настроек** - работает сразу
@@ -132,7 +161,44 @@ void ǀǁǂǃǄǅǆǇǈǉǊǋǌǍǎǏ::ǀǁǂǃǄǅǆǇǈǉǊǋǌǍǎǏ() {
 
 ---
 
-## 🔧 Технические детали
+## 📦 Распространение
+
+### Способы использования
+
+1. **Скачать готовый JAR**
+   - Скачайте `c-obfuscator-1.0.0.jar` из Releases
+   - Двойной клик → открывается интерактивное меню
+   - Или используйте CLI режим
+
+2. **Собрать из исходников**
+   ```bash
+   git clone https://github.com/ferrum-dev/c-obfuscator.git
+   cd c-obfuscator
+   ./gradlew build
+   java -jar build/libs/c-obfuscator-1.0.0.jar
+   ```
+
+3. **Использовать в скриптах**
+   ```batch
+   REM Batch скрипт (Windows)
+   @echo off
+   java -jar c-obfuscator-1.0.0.jar %1 %2
+   ```
+
+4. **Интеграция в CI/CD**
+   ```yaml
+   # GitHub Actions пример
+   - name: Obfuscate EXE
+     run: java -jar c-obfuscator-1.0.0.jar app.exe app_obf.exe
+   ```
+
+### Требования
+
+- Java 8 или выше
+- 100 MB свободного места на диске
+- Windows (для обфускации EXE файлов)
+
+---
 
 ### Построено на
 - **ASM 9.7.1** - фреймворк для работы с байткодом
